@@ -22,6 +22,7 @@ let retweetWithCommentPattern = "\\040RT\\b"
 //Output
 var columnOfTweets = [String]()
 var handleOutput : [String] = [""]
+var urlArray = [String]()
 
 func generateTweets() {
     var tweet = [Int: String]()
