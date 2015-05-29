@@ -12,3 +12,4 @@ let hashtagPattern = "\\B#\\w+"
 let retweetPattern = "\\bRT\\b"
 let retweetWithCommentPattern = "\\040RT\\b"
 
+//testing commit
