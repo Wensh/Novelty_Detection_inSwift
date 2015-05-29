@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6781CD5C1B1877A200250863 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* AppDelegate.swift */; };
-		6781CD5E1B1877A200250863 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6781CD5D1B1877A200250863 /* Images.xcassets */; };
-		6781CD611B1877A200250863 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6781CD5F1B1877A200250863 /* MainMenu.xib */; };
+		6781CD5C1B1877A200250863 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* main.swift */; };
 		6781CD6D1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,9 +24,7 @@
 /* Begin PBXFileReference section */
 		6781CD561B1877A200250863 /* Tweet Novelty Detection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tweet Novelty Detection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6781CD5A1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6781CD5B1B1877A200250863 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6781CD5D1B1877A200250863 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6781CD601B1877A200250863 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6781CD5B1B1877A200250863 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6781CD661B1877A200250863 /* Tweet Novelty DetectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tweet Novelty DetectionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6781CD6B1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet_Novelty_DetectionTests.swift; sourceTree = "<group>"; };
@@ -73,9 +69,7 @@
 		6781CD581B1877A200250863 /* Tweet Novelty Detection */ = {
 			isa = PBXGroup;
 			children = (
-				6781CD5B1B1877A200250863 /* AppDelegate.swift */,
-				6781CD5D1B1877A200250863 /* Images.xcassets */,
-				6781CD5F1B1877A200250863 /* MainMenu.xib */,
+				6781CD5B1B1877A200250863 /* main.swift */,
 				6781CD591B1877A200250863 /* Supporting Files */,
 			);
 			path = "Tweet Novelty Detection";
@@ -186,8 +180,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6781CD5E1B1877A200250863 /* Images.xcassets in Resources */,
-				6781CD611B1877A200250863 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6781CD5C1B1877A200250863 /* AppDelegate.swift in Sources */,
+				6781CD5C1B1877A200250863 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,17 +218,6 @@
 			targetProxy = 6781CD671B1877A200250863 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6781CD5F1B1877A200250863 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6781CD601B1877A200250863 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6781CD6E1B1877A200250863 /* Debug */ = {
