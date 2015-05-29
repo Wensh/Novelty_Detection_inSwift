@@ -1,4 +1,5 @@
 // memoized Levenshtein Distance
+// description given here: http://programmingpraxis.com/2014/09/12/levenshtein-distance/
 
 import Foundation
 
