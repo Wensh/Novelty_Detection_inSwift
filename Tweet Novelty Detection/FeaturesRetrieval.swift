@@ -27,18 +27,6 @@ println("doesn't exist")
 }
 */
 
-func getMatches(targetString: String, regex: String, options: NSRegularExpressionOptions) -> [NSTextCheckingResult]
-{
-    var error: NSError?
-    var exp = NSRegularExpression(pattern: regex, options: options, error: &error)
-    
-    if let error = error {
-        println(error.description)
-    }
-    var matches = exp!.matchesInString(targetString, options: nil, range: NSMakeRange(0, count(targetString)))
-    return matches as! [NSTextCheckingResult]
-}
-
 func executeSimilarityCalculation() {
     while i < columnOfTweets.count-1 {
         var tweetlets = columnOfTweets[indexOfColumns].componentsSeparatedByString(" ")
@@ -120,7 +108,66 @@ func sixSort() {
     }
 }
 
-
+//Relevancy score Wikipedia
+func countWikiTerms() {
+    var wikiRelevancyScores = [String]()
+    var wikiArray = [String]()
+    var wikiStringTF = [String]()
+    var wikiTF = [Double]()
+    var calculationArray = [Double]()
+    var calculationStrings = [String]()
+    
+    var error: NSErrorPointer = nil
+    let pathOfWiki = urlForScene("/Users/wenjiezhong/Dropbox/AI/CrowdTruth/Curation/WikipediaEntitiesTF.csv")
+    
+    if let wikiCSV = CSV(contentsOfURL: pathOfWiki, error: error) {
+        // Rows
+        let rows = wikiCSV.rows
+        let headers = wikiCSV.headers
+        
+        // Columns
+        let wikiColumns = wikiCSV.columns
+        wikiArray = wikiColumns["text"]!
+        wikiStringTF = wikiColumns["tf"]!
+        for i in 0..<wikiStringTF.count {
+            var tempStringWiki = (wikiStringTF[i] as NSString).doubleValue
+            wikiTF.append(tempStringWiki)
+        }
+    }
+    
+    var tempCount:Double = 0
+    var countedArticlesToString = ""
+    while indexOfColumns < columnOfTweets.count {
+        for j in 0..<wikiArray.count {
+            var matches = matchesForRegexInText("\\b\(wikiArray[j])\\b", columnOfTweets[indexOfColumns])
+            var tempProduct = Double(matches.count) * wikiTF[j]
+            tempCount += tempProduct
+        }
+        calculationArray.append(tempCount)
+        countedArticlesToString = String(stringInterpolationSegment: tempCount)
+        wikiRelevancyScores.insert(countedArticlesToString, atIndex: indexOfColumns)
+        tempCount = 0
+        indexOfColumns++
+    }
+    
+    let calculationMax = maxElement(calculationArray)
+    
+    for k in 0..<calculationArray.count {
+        var countedWikiCountToString = String(stringInterpolationSegment: calculationArray[k])
+        calculationStrings.append(countedWikiCountToString)
+    }
+    
+    
+    let wikiFileName = "wikiCount.csv"
+    
+    if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
+        let dir = dirs[0] //documents directory
+        
+        let pathToWriteForWiki = dir.stringByAppendingPathComponent(wikiFileName)
+        let joinedWiki = "\n".join(calculationStrings)
+        joinedWiki.writeToFile(pathToWriteForWiki, atomically:true, encoding:NSUTF8StringEncoding)
+    }
+}
 
 
 
