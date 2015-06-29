@@ -11,7 +11,7 @@
 		677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677911B61B1888E900C4DB6C /* CSVScanner.swift */; };
 		6781CD5C1B1877A200250863 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* main.swift */; };
 		6781CD6D1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */; };
-		678E961E1B1891EA00F14B28 /* PersonExtractionDBpedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E961D1B1891EA00F14B28 /* PersonExtractionDBpedia.swift */; };
+		678E961E1B1891EA00F14B28 /* Executables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E961D1B1891EA00F14B28 /* Executables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +33,7 @@
 		6781CD661B1877A200250863 /* Tweet Novelty DetectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tweet Novelty DetectionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6781CD6B1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet_Novelty_DetectionTests.swift; sourceTree = "<group>"; };
-		678E961D1B1891EA00F14B28 /* PersonExtractionDBpedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonExtractionDBpedia.swift; sourceTree = "<group>"; };
+		678E961D1B1891EA00F14B28 /* Executables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				6781CD5B1B1877A200250863 /* main.swift */,
-				678E961D1B1891EA00F14B28 /* PersonExtractionDBpedia.swift */,
+				678E961D1B1891EA00F14B28 /* Executables.swift */,
 				677911B61B1888E900C4DB6C /* CSVScanner.swift */,
 				67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */,
 				6781CD591B1877A200250863 /* Supporting Files */,
@@ -208,7 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67298A461B18897400D2ECB3 /* Levenshteins Distance.swift in Sources */,
-				678E961E1B1891EA00F14B28 /* PersonExtractionDBpedia.swift in Sources */,
+				678E961E1B1891EA00F14B28 /* Executables.swift in Sources */,
 				6781CD5C1B1877A200250863 /* main.swift in Sources */,
 				677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */,
 			);
