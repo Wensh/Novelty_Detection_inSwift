@@ -13,6 +13,7 @@
 		6781CD5C1B1877A200250863 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* main.swift */; };
 		6781CD6D1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */; };
 		678E961E1B1891EA00F14B28 /* FeaturesRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */; };
+		67F4B1331B58F9020062B973 /* CalculateWithCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		6781CD6B1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet_Novelty_DetectionTests.swift; sourceTree = "<group>"; };
 		678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesRetrieval.swift; sourceTree = "<group>"; };
+		67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateWithCSV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				6781CD5B1B1877A200250863 /* main.swift */,
+				67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */,
 				678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */,
 				6780C9571B40C63F0082688D /* CountFunctions.swift */,
 				677911B61B1888E900C4DB6C /* CSVScanner.swift */,
@@ -213,6 +216,7 @@
 				67298A461B18897400D2ECB3 /* Levenshteins Distance.swift in Sources */,
 				6780C9581B40C63F0082688D /* CountFunctions.swift in Sources */,
 				678E961E1B1891EA00F14B28 /* FeaturesRetrieval.swift in Sources */,
+				67F4B1331B58F9020062B973 /* CalculateWithCSV.swift in Sources */,
 				6781CD5C1B1877A200250863 /* main.swift in Sources */,
 				677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */,
 			);

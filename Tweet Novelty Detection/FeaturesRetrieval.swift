@@ -8,6 +8,15 @@ var sparqlRequestPrsonOnDBpedia = "http://dbpedia.org/sparql?default-graph-uri=h
 
 var longurl = String(contentsOfURL: NSURL(string: sparqlRequestPrsonOnDBpedia)!, encoding: NSUTF8StringEncoding, error: nil)
 
+extension Array {
+    mutating func shuffle() {
+        if count < 2 { return }
+        for i in 0..<(count - 1) {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            swap(&self[i], &self[j])
+        }
+    }
+}
 
 func matchesForRegexInText(regex: String!, text: String!) -> [String] {
     let regex = NSRegularExpression(pattern: regex,
@@ -27,145 +36,73 @@ println("doesn't exist")
 }
 */
 
-func executeSimilarityCalculation() {
-    while i < columnOfTweets.count-1 {
-        var tweetlets = columnOfTweets[indexOfColumns].componentsSeparatedByString(" ")
-        var nextTweetlets = columnOfTweets[indexOfColumns+1].componentsSeparatedByString(" ")
-        while indexOfTweetlets < tweetlets.count && indexOfTweetlets < nextTweetlets.count {
-            similarityScoreTemp += levenshteinDistance(tweetlets[indexOfTweetlets],nextTweetlets[indexOfTweetlets])
-            indexOfTweetlets++
-        }
-        similarityScoreString = String(similarityScoreTemp)
-        similarityScore.append(similarityScoreString)
-        similarityScoreTemp = 0
-        println(columnOfTweets[indexOfColumns])
-        println(columnOfTweets[indexOfColumns+1])
-        println("Similarity score of tweet pair \(indexOfColumns): \(similarityScore[indexOfColumns])")
-        println()
-        indexOfColumns++
-        i++
-        indexOfTweetlets = 0
-    }
-    
-    //Write to file
-    let similarityFileName = "similarity.csv"
-    
-    if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-        let dir = dirs[0] //documents directory
-        
-        let pathToWriteForSimilarity = dir.stringByAppendingPathComponent(similarityFileName)
-        let joinedSimilarities = "\n".join(similarityScore)
-        joinedSimilarities.writeToFile(pathToWriteForSimilarity, atomically:true, encoding:NSUTF8StringEncoding)
-    }
-}
-
-func sixSort() {
-    let pathOfSeed = "/Users/wenjiezhong/Desktop/naamloos.txt"
+func sortPairs() {
+    let pathOfSeed = "/Users/wenjiezhong/Desktop/processing.txt"
     var seedWords = String(contentsOfFile: pathOfSeed, encoding: NSUTF8StringEncoding, error: nil)
+    let pathOfirrelevantWords = "/Users/wenjiezhong/Desktop/irprocessing.txt"
+    var irrelevantWords = String(contentsOfFile: pathOfirrelevantWords, encoding: NSUTF8StringEncoding, error: nil)
+    
     
     var seedWordsArray = [String]()
     var pairsArray = [String]()
     var outputArray = [String]()
+    var trimmed = [String]()
+    var trimmedIrrelevantWords = [String]()
+    var irrelevantWordsArray = [String]()
     seedWordsArray = seedWords!.componentsSeparatedByString("\n")
+    irrelevantWordsArray = irrelevantWords!.componentsSeparatedByString("\n")
     
     var sixCount = 1
     var sixResetter = 2
-    var lineCounter = 0
     
-    for i in 0..<seedWordsArray.count {
-        while sixCount < 12 {
-            pairsArray.insert("\(i), \(seedWordsArray[i]), \(sixCount), \(seedWordsArray[sixCount])", atIndex: lineCounter)
-            sixCount++
-            lineCounter++
-        }
-        sixCount = sixResetter
-        sixResetter++
+    for j in 0..<seedWordsArray.count {
+        trimmed.append((seedWordsArray[j] as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
     }
     
-    var sixThreshold = 5
-    var outputCounter = 0
-    sixCount = 0
-    
-    for i in 0..<11 {
-        outputArray.insert(" ", atIndex: i)
-        while (outputCounter<=sixThreshold && sixCount<=65) {
-            outputArray.insert("\(outputArray[i]),\(pairsArray[sixCount])", atIndex: i)
-            outputCounter++
-            sixCount++
-        }
-        outputCounter = 0
+    for j in 0..<irrelevantWordsArray.count {
+        trimmedIrrelevantWords.append((irrelevantWordsArray[j] as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
     }
     
     
-    let sortedFileName = "sorted.csv"
+    for i in 0..<trimmed.count-25 {
+        while sixCount < trimmedIrrelevantWords.count {
+            var diceRoll = Int(arc4random_uniform(3))
+            if diceRoll == 0 {
+                pairsArray.append("\(trimmed[i]),\(trimmedIrrelevantWords[sixCount])")
+                sixCount++
+            }
+            else if diceRoll == 1{
+                pairsArray.append("\(trimmedIrrelevantWords[sixCount]),\(trimmed[i])")
+                sixCount++
+            }
+            else {
+                pairsArray.append("\(trimmedIrrelevantWords[sixCount]),\(trimmedIrrelevantWords[i])")
+                sixCount++
+            }
+        }
+        sixCount = i+2
+    }
+    
+    pairsArray.shuffle()
+    
+    let sortedFileName = "sortedPairs.csv"
     
     if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
         let dir = dirs[0] //documents directory
         
         let pathToWriteForSorted = dir.stringByAppendingPathComponent(sortedFileName)
-        let joinedSorted = "\n".join(outputArray)
+        let joinedSorted = "\n".join(pairsArray)
         joinedSorted.writeToFile(pathToWriteForSorted, atomically:true, encoding:NSUTF8StringEncoding)
     }
 }
 
-//Relevancy score Wikipedia
-func countWikiTerms() {
-    var wikiRelevancyScores = [String]()
-    var wikiArray = [String]()
-    var wikiStringTF = [String]()
-    var wikiTF = [Double]()
-    var calculationArray = [Double]()
-    var calculationStrings = [String]()
-    
-    var error: NSErrorPointer = nil
-    let pathOfWiki = urlForScene("/Users/wenjiezhong/Dropbox/AI/CrowdTruth/Curation/WikipediaEntitiesTF.csv")
-    
-    if let wikiCSV = CSV(contentsOfURL: pathOfWiki, error: error) {
-        // Rows
-        let rows = wikiCSV.rows
-        let headers = wikiCSV.headers
-        
-        // Columns
-        let wikiColumns = wikiCSV.columns
-        wikiArray = wikiColumns["text"]!
-        wikiStringTF = wikiColumns["tf"]!
-        for i in 0..<wikiStringTF.count {
-            var tempStringWiki = (wikiStringTF[i] as NSString).doubleValue
-            wikiTF.append(tempStringWiki)
-        }
-    }
-    
-    var tempCount:Double = 0
-    var countedArticlesToString = ""
-    while indexOfColumns < columnOfTweets.count {
-        for j in 0..<wikiArray.count {
-            var matches = matchesForRegexInText("\\b\(wikiArray[j])\\b", columnOfTweets[indexOfColumns])
-            var tempProduct = Double(matches.count) * wikiTF[j]
-            tempCount += tempProduct
-        }
-        calculationArray.append(tempCount)
-        countedArticlesToString = String(stringInterpolationSegment: tempCount)
-        wikiRelevancyScores.insert(countedArticlesToString, atIndex: indexOfColumns)
-        tempCount = 0
-        indexOfColumns++
-    }
-    
-    let calculationMax = maxElement(calculationArray)
-    
-    for k in 0..<calculationArray.count {
-        var countedWikiCountToString = String(stringInterpolationSegment: calculationArray[k])
-        calculationStrings.append(countedWikiCountToString)
-    }
-    
-    
-    let wikiFileName = "wikiCount.csv"
-    
+func saveToDocument(array: [String], filename: String) {
     if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
         let dir = dirs[0] //documents directory
         
-        let pathToWriteForWiki = dir.stringByAppendingPathComponent(wikiFileName)
-        let joinedWiki = "\n".join(calculationStrings)
-        joinedWiki.writeToFile(pathToWriteForWiki, atomically:true, encoding:NSUTF8StringEncoding)
+        let pathToWrite = dir.stringByAppendingPathComponent(filename)
+        let joinedSorted = "\n".join(array)
+        joinedSorted.writeToFile(pathToWrite, atomically:true, encoding:NSUTF8StringEncoding)
     }
 }
 
