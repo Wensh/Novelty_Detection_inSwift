@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		67298A461B18897400D2ECB3 /* Levenshteins Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */; };
+		6759D2691B61D886008E7852 /* GenerateCWVectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6759D2681B61D886008E7852 /* GenerateCWVectors.swift */; };
 		677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677911B61B1888E900C4DB6C /* CSVScanner.swift */; };
 		6780C9581B40C63F0082688D /* CountFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C9571B40C63F0082688D /* CountFunctions.swift */; };
 		6781CD5C1B1877A200250863 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* main.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Levenshteins Distance.swift"; sourceTree = "<group>"; };
+		6759D2681B61D886008E7852 /* GenerateCWVectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateCWVectors.swift; sourceTree = "<group>"; };
 		677911B61B1888E900C4DB6C /* CSVScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVScanner.swift; sourceTree = "<group>"; };
 		6780C9571B40C63F0082688D /* CountFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountFunctions.swift; sourceTree = "<group>"; };
 		6781CD561B1877A200250863 /* Tweet Novelty Detection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tweet Novelty Detection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				67F926751B604953007159BB /* Archive.swift */,
 				67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */,
 				67F181251B60E21400A9EE62 /* SortByTaskID.swift */,
+				6759D2681B61D886008E7852 /* GenerateCWVectors.swift */,
 				678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */,
 				6780C9571B40C63F0082688D /* CountFunctions.swift */,
 				677911B61B1888E900C4DB6C /* CSVScanner.swift */,
@@ -226,6 +229,7 @@
 				67F4B1331B58F9020062B973 /* CalculateWithCSV.swift in Sources */,
 				6781CD5C1B1877A200250863 /* main.swift in Sources */,
 				677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */,
+				6759D2691B61D886008E7852 /* GenerateCWVectors.swift in Sources */,
 				67F926761B604953007159BB /* Archive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
