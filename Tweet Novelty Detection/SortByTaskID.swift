@@ -15,7 +15,8 @@ var columnOfDraw = [String]()
 var columnOfLost = [String]()
 var columnOfUserIrrelevant1 = [String]()
 var columnOfUserIrrelevant2 = [String]()
-var vectorsForCrowdTruth = Array(count: 38, repeatedValue: Array(count: arrayLength, repeatedValue: ""))
+var vectorsForCrowdTruth = Array(count: 65, repeatedValue: Array(count: arrayLength, repeatedValue: ""))
+var countWordMatrix = Array(count: 28, repeatedValue: Array(count: arrayLength, repeatedValue: "0"))
 
 var word0 = [String]()
 var word1 = [String]()
@@ -82,13 +83,21 @@ var forCombiningVectorsArrayD = [String]()
 var forCombiningVectorsArrayE = [String]()
 var forCombiningVectorsArrayF = [String]()
 var forCombiningVectorsArrayG = [String]()
+var forCombiningVectorsArrayH = [String]()
+var forCombiningVectorsArrayI = [String]()
+var forCombiningVectorsArrayJ = [String]()
+var forCombiningVectorsArrayK = [String]()
+var forCombiningVectorsArrayL = [String]()
+var forCombiningVectorsArrayM = [String]()
 var forCombiningVectorsArray = [String]()
 var postSplitVectorsForCrowdTruth = [String]()
 var splitPointer = [Int]()
+var countedWordsPerTID = [String]()
+var wordAndSelectedArray = [String]()
 
 func generateVectorsForCrowdTruth() {
     var tweet = [Int: String]()
-    let url = urlForScene("/Users/wenjiezhong/Dropbox/AI/CrowdTruth/CrowdFlower/Processing/combinedByUnitID.csv")
+    let url = urlForScene("/Users/wenjiezhong/Desktop/aggregated.csv")
     var error: NSErrorPointer = nil
     if let csv = CSV(contentsOfURL: url, error: error) {
         // Rows
@@ -108,7 +117,6 @@ func generateVectorsForCrowdTruth() {
         columnOfUserIrrelevant2 = columns["byUserIrrelevant2"]!
         columnOfRelevant1 = columns["relevant1"]!
         columnOfRelevant2 = columns["relevant2"]!
-        /*
         word0 = columns["word0"]!
         word1 = columns["word1"]!
         word2 = columns["word2"]!
@@ -137,7 +145,6 @@ func generateVectorsForCrowdTruth() {
         word25 = columns["word25"]!
         word26 = columns["word26"]!
         word27 = columns["word27"]!
-        */
         selected0 = columns["selected0"]!
         selected1 = columns["selected1"]!
         selected2 = columns["selected2"]!
@@ -171,9 +178,9 @@ func generateVectorsForCrowdTruth() {
 }
 
 func generateOutputForCrowdTruth() {
-    var cwIndexer = 755035715
+    var cwIndexer = 765519059
     var jCW = 0
-    while cwIndexer <= 755035769 {
+    while cwIndexer <= 765519108 {
         while jCW < columnOfUnitID.count {
             if (columnOfUnitID[jCW] == String(cwIndexer)) {
                 vectorsForCrowdTruth[0][jCW] = columnOfUnitID[jCW]
@@ -186,42 +193,72 @@ func generateOutputForCrowdTruth() {
                 vectorsForCrowdTruth[7][jCW] = columnOfRelevant1[jCW]
                 vectorsForCrowdTruth[8][jCW] = columnOfRelevant2[jCW]
                 vectorsForCrowdTruth[9][jCW] = selected0[jCW]
-                vectorsForCrowdTruth[10][jCW] = selected0[jCW]
-                vectorsForCrowdTruth[11][jCW] = selected1[jCW]
-                vectorsForCrowdTruth[12][jCW] = selected2[jCW]
-                vectorsForCrowdTruth[13][jCW] = selected3[jCW]
-                vectorsForCrowdTruth[14][jCW] = selected4[jCW]
-                vectorsForCrowdTruth[15][jCW] = selected5[jCW]
-                vectorsForCrowdTruth[16][jCW] = selected6[jCW]
-                vectorsForCrowdTruth[17][jCW] = selected7[jCW]
-                vectorsForCrowdTruth[18][jCW] = selected8[jCW]
-                vectorsForCrowdTruth[19][jCW] = selected9[jCW]
-                vectorsForCrowdTruth[20][jCW] = selected10[jCW]
-                vectorsForCrowdTruth[21][jCW] = selected11[jCW]
-                vectorsForCrowdTruth[22][jCW] = selected12[jCW]
-                vectorsForCrowdTruth[23][jCW] = selected13[jCW]
-                vectorsForCrowdTruth[24][jCW] = selected14[jCW]
-                vectorsForCrowdTruth[25][jCW] = selected15[jCW]
-                vectorsForCrowdTruth[26][jCW] = selected16[jCW]
-                vectorsForCrowdTruth[27][jCW] = selected17[jCW]
-                vectorsForCrowdTruth[28][jCW] = selected18[jCW]
-                vectorsForCrowdTruth[29][jCW] = selected19[jCW]
-                vectorsForCrowdTruth[30][jCW] = selected20[jCW]
-                vectorsForCrowdTruth[31][jCW] = selected21[jCW]
-                vectorsForCrowdTruth[32][jCW] = selected22[jCW]
-                vectorsForCrowdTruth[33][jCW] = selected23[jCW]
-                vectorsForCrowdTruth[34][jCW] = selected24[jCW]
-                vectorsForCrowdTruth[35][jCW] = selected25[jCW]
-                vectorsForCrowdTruth[36][jCW] = selected26[jCW]
-                vectorsForCrowdTruth[37][jCW] = selected27[jCW]
+                vectorsForCrowdTruth[10][jCW] = selected1[jCW]
+                vectorsForCrowdTruth[11][jCW] = selected2[jCW]
+                vectorsForCrowdTruth[12][jCW] = selected3[jCW]
+                vectorsForCrowdTruth[13][jCW] = selected4[jCW]
+                vectorsForCrowdTruth[14][jCW] = selected5[jCW]
+                vectorsForCrowdTruth[15][jCW] = selected6[jCW]
+                vectorsForCrowdTruth[16][jCW] = selected7[jCW]
+                vectorsForCrowdTruth[17][jCW] = selected8[jCW]
+                vectorsForCrowdTruth[18][jCW] = selected9[jCW]
+                vectorsForCrowdTruth[19][jCW] = selected10[jCW]
+                vectorsForCrowdTruth[20][jCW] = selected11[jCW]
+                vectorsForCrowdTruth[21][jCW] = selected12[jCW]
+                vectorsForCrowdTruth[22][jCW] = selected13[jCW]
+                vectorsForCrowdTruth[23][jCW] = selected14[jCW]
+                vectorsForCrowdTruth[24][jCW] = selected15[jCW]
+                vectorsForCrowdTruth[25][jCW] = selected16[jCW]
+                vectorsForCrowdTruth[26][jCW] = selected17[jCW]
+                vectorsForCrowdTruth[27][jCW] = selected18[jCW]
+                vectorsForCrowdTruth[28][jCW] = selected19[jCW]
+                vectorsForCrowdTruth[29][jCW] = selected20[jCW]
+                vectorsForCrowdTruth[30][jCW] = selected21[jCW]
+                vectorsForCrowdTruth[31][jCW] = selected22[jCW]
+                vectorsForCrowdTruth[32][jCW] = selected23[jCW]
+                vectorsForCrowdTruth[33][jCW] = selected24[jCW]
+                vectorsForCrowdTruth[34][jCW] = selected25[jCW]
+                vectorsForCrowdTruth[35][jCW] = selected26[jCW]
+                vectorsForCrowdTruth[36][jCW] = selected27[jCW]
+                vectorsForCrowdTruth[37][jCW] = word0[jCW]
+                vectorsForCrowdTruth[38][jCW] = word1[jCW]
+                vectorsForCrowdTruth[39][jCW] = word2[jCW]
+                vectorsForCrowdTruth[40][jCW] = word3[jCW]
+                vectorsForCrowdTruth[41][jCW] = word4[jCW]
+                vectorsForCrowdTruth[42][jCW] = word5[jCW]
+                vectorsForCrowdTruth[43][jCW] = word6[jCW]
+                vectorsForCrowdTruth[44][jCW] = word7[jCW]
+                vectorsForCrowdTruth[45][jCW] = word8[jCW]
+                vectorsForCrowdTruth[46][jCW] = word9[jCW]
+                vectorsForCrowdTruth[47][jCW] = word10[jCW]
+                vectorsForCrowdTruth[48][jCW] = word11[jCW]
+                vectorsForCrowdTruth[49][jCW] = word12[jCW]
+                vectorsForCrowdTruth[50][jCW] = word13[jCW]
+                vectorsForCrowdTruth[51][jCW] = word14[jCW]
+                vectorsForCrowdTruth[52][jCW] = word15[jCW]
+                vectorsForCrowdTruth[53][jCW] = word16[jCW]
+                vectorsForCrowdTruth[54][jCW] = word17[jCW]
+                vectorsForCrowdTruth[55][jCW] = word18[jCW]
+                vectorsForCrowdTruth[56][jCW] = word19[jCW]
+                vectorsForCrowdTruth[57][jCW] = word20[jCW]
+                vectorsForCrowdTruth[58][jCW] = word21[jCW]
+                vectorsForCrowdTruth[59][jCW] = word22[jCW]
+                vectorsForCrowdTruth[60][jCW] = word23[jCW]
+                vectorsForCrowdTruth[61][jCW] = word24[jCW]
+                vectorsForCrowdTruth[62][jCW] = word25[jCW]
+                vectorsForCrowdTruth[63][jCW] = word26[jCW]
+                vectorsForCrowdTruth[64][jCW] = word27[jCW]
             }
             jCW++
         }
         cwIndexer++
         jCW = 0
     }
+    //combineArraysToDocument()
     combineVectorNamesToDocument()
-    splitVectorsForCW()
+    //combineVectorsOfTweets()
+    //splitVectorsForCW()
+    //retrieveMostSelectedWords()
 }
 
 func combineVectorNamesToDocument() {
@@ -244,13 +281,48 @@ func combineVectorNamesToDocument() {
         forCombiningVectorsArrayF.append("\(vectorsForCrowdTruth[27][i]),\(vectorsForCrowdTruth[28][i]),\(vectorsForCrowdTruth[29][i]),\(vectorsForCrowdTruth[30][i]),\(vectorsForCrowdTruth[31][i])")
     }
     for i in 0..<columnOfUnitID.count {
-        forCombiningVectorsArrayG.append("\(vectorsForCrowdTruth[32][i]),\(vectorsForCrowdTruth[33][i]),\(vectorsForCrowdTruth[34][i]),\(vectorsForCrowdTruth[35][i]),\(vectorsForCrowdTruth[36][i]),\(vectorsForCrowdTruth[37][i])")
+        forCombiningVectorsArrayG.append("\(vectorsForCrowdTruth[32][i]),\(vectorsForCrowdTruth[33][i]),\(vectorsForCrowdTruth[34][i]),\(vectorsForCrowdTruth[35][i]),\(vectorsForCrowdTruth[36][i])")
     }
     for i in 0..<columnOfUnitID.count {
         forCombiningVectorsArray.append("\(forCombiningVectorsArrayA[i]),\(forCombiningVectorsArrayB[i]),\(forCombiningVectorsArrayC[i]),\(forCombiningVectorsArrayD[i]),\(forCombiningVectorsArrayE[i]),\(forCombiningVectorsArrayF[i]),\(forCombiningVectorsArrayG[i])")
     }
-    //saveToDocument(forCombiningVectorsArray, "combined")
+    saveToDocument(forCombiningVectorsArray, "combined.csv")
 }
+
+func combineVectorsOfTweets() {
+    var tempSplitArrayForCT = [String]()
+    var outputSplitArrayForCT = [String]()
+    var j = 0
+    var k = 0
+    var unitIndexer = 0
+    var csIndex = 0
+    var csIndex2 = 15
+    while k < columnOfUnitID.count-1 {
+        while columnOfUnitID[j] == columnOfUnitID[j+1] {
+            tempSplitArrayForCT.insert(forCombiningVectorsArray[j], atIndex: unitIndexer)
+            j++
+            unitIndexer++
+            if j+1 == columnOfUnitID.count {break}
+        }
+        if j != columnOfUnitID.count {
+            tempSplitArrayForCT.insert(forCombiningVectorsArray[j], atIndex: unitIndexer)
+        }
+        while csIndex < 15 {
+            outputSplitArrayForCT.insert("\(tempSplitArrayForCT[csIndex]),\(tempSplitArrayForCT[csIndex2])", atIndex: csIndex)
+            csIndex++
+            csIndex2++
+        }
+        saveToDocument(outputSplitArrayForCT, "splitCombined\(k).csv")
+        tempSplitArrayForCT.removeAll()
+        outputSplitArrayForCT.removeAll()
+        unitIndexer=0
+        k=j
+        j++
+        csIndex = 0
+        csIndex2 = 15
+    }
+}
+
 
 func splitVectorsForCW() {
     var tempSplitArrayForCT = [String]()
@@ -267,12 +339,39 @@ func splitVectorsForCW() {
         if j != columnOfUnitID.count {
             tempSplitArrayForCT.insert(forCombiningVectorsArray[j], atIndex: unitIndexer)
         }
-        saveToDocument(tempSplitArrayForCT, "splitCombined\(k)")
+        saveToDocument(tempSplitArrayForCT, "splitCombined\(k).csv")
         tempSplitArrayForCT.removeAll()
         unitIndexer=0
         k=j
         j++
     }
+}
+
+func retrieveMostSelectedWords() {
+    var j = 0
+    var k = 0
+    var m = 0
+    var tempInt = 0
+    while j < columnOfUnitID.count {
+        while k < 15 {
+            if j >= 1650 {break}
+            for i in 9...36 {
+                if vectorsForCrowdTruth[i][j] == "1" {
+                    tempInt = countWordMatrix[i-9][m].toInt()! + 1
+                    countWordMatrix[i-9][m] = String(tempInt)
+                }
+            }
+            j++
+            k++
+        }
+        if j >= 1650 {break}
+        for i in 0...27 {
+            wordAndSelectedArray.append("\(columnOfTID[j-1]),\(vectorsForCrowdTruth[i+37][j-1]),\(countWordMatrix[i][m])")
+        }
+        m++
+        k = 0
+    }
+    saveToDocument(wordAndSelectedArray, "selectedCount")
 }
 
 

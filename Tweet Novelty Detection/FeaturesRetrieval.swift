@@ -6,6 +6,19 @@ import Foundation
 var nameOfTwitterUser = "Johan_Cruyff"
 var sparqlRequestPrsonOnDBpedia = "http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=select+distinct+%3FConcept+where+%7B%0D%0Adbpedia%3A"+nameOfTwitterUser+"+rdf%3Atype+%3FConcept%0D%0AFILTER+regex%28%3FConcept%2C+%22Person%22%29%0D%0A%7D+&format=application%2Fsparql-results%2Bjson&timeout=30000&debug=on"
 
+var sparqlRequestPrsonOnDBpediaAlternative = "http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E+%0D%0APREFIX+dbpedia%3A+%3Chttp%3A%2F%2Fdbpedia.org%2F%3E%0D%0A%0D%0Aselect+%3FConcept+%0D%0Awhere+%7B%0D%0A%3Chttp%3A%2F%2Fdbpedia.org%2Fresource%2F"+nameOfTwitterUser+"%3E+rdf%3Atype+%3FConcept%0D%0AFILTER+regex%28%3FConcept%2C+%22Person%22%29%0D%0A%7D&format=text%2Fhtml&timeout=30000&debug=on"
+
+/*
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbpedia: <http://dbpedia.org/>
+
+select ?Concept
+where {
+<http://dbpedia.org/resource/Johan_Cruyff> rdf:type ?Concept
+FILTER regex(?Concept, "Person")
+}
+*/
+
 var longurl = String(contentsOfURL: NSURL(string: sparqlRequestPrsonOnDBpedia)!, encoding: NSUTF8StringEncoding, error: nil)
 
 extension Array {
@@ -36,7 +49,7 @@ println("doesn't exist")
 }
 */
 
-func sortPairs() {
+func sortPairsMixedWithIrrelevantTweets() {
     let pathOfSeed = "/Users/wenjiezhong/Desktop/processing.txt"
     var seedWords = String(contentsOfFile: pathOfSeed, encoding: NSUTF8StringEncoding, error: nil)
     let pathOfirrelevantWords = "/Users/wenjiezhong/Desktop/irprocessing.txt"
@@ -82,18 +95,8 @@ func sortPairs() {
         }
         sixCount = i+2
     }
-    
     pairsArray.shuffle()
-    
-    let sortedFileName = "sortedPairs.csv"
-    
-    if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-        let dir = dirs[0] //documents directory
-        
-        let pathToWriteForSorted = dir.stringByAppendingPathComponent(sortedFileName)
-        let joinedSorted = "\n".join(pairsArray)
-        joinedSorted.writeToFile(pathToWriteForSorted, atomically:true, encoding:NSUTF8StringEncoding)
-    }
+    saveToDocument(pairsArray, "sortedPairsWithIrrelevantTweets.csv")
 }
 
 func saveToDocument(array: [String], filename: String) {

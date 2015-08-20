@@ -14,7 +14,7 @@ func urlForScene(stringForUrl : String) -> NSURL {
     var filename:NSString = "Whaling"
     return NSURL.fileURLWithPath(filepath)!
 }
-var arrayLength = 1650
+var arrayLength = 1680
 var testArray = [String]()
 
 //Output
@@ -55,7 +55,7 @@ var ev6b = [String]()
 var ev7b = [String]()
 var ev8b = [String]()
 
-var nsIndexer = 1
+var nsIndexer = 0
 var interTweetNoveltySum : Int = 0
 //0 Win, 1 Draw, 2 Lost
 var matchResult = Array(count: 20, repeatedValue: Array(count: arrayLength, repeatedValue: "0"))
@@ -80,39 +80,59 @@ var wordsInTweetsArray2 = [String]()
 
 func calculateNoveltySum() {
     var j = 0
-    while nsIndexer < 50 {
+    var tempnsIndexerChecker = ""
+    var tidIndexWriter = [String]()
+    while nsIndexer < 51 {
         tweetNoveltySum.insert(0, atIndex:nsIndexer)
-        while j < columnOfTweets1.count-1 {
-            if (columnOfTID1[j] == "tid00\(nsIndexer+1)" || columnOfTID1[j] == "tid0\(nsIndexer+1)" && columnOfTweetNovel1[j] == "true") {
+        if nsIndexer <= 9 {
+            tempnsIndexerChecker = "tid00\(nsIndexer)"
+        }
+        else {
+            tempnsIndexerChecker = "tid0\(nsIndexer)"
+        }
+        while j < columnOfTID1.count {
+            if (columnOfTID1[j] == tempnsIndexerChecker && columnOfTweetNovel1[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] + 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum, atIndex:nsIndexer)
             }
-            else if (columnOfTID1[j] == "tid00\(nsIndexer+1)" || columnOfTID1[j] == "tid0\(nsIndexer+1)"  && columnOfTweetsEqual[j] == "true") {
+            else if (columnOfTID1[j] == tempnsIndexerChecker && columnOfTweetsEqual[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] + 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum, atIndex:nsIndexer)
             }
-            else if (columnOfTID1[j] == "tid00\(nsIndexer+1)" || columnOfTID1[j] == "tid0\(nsIndexer+1)"  && columnOfTweetNovel2[j] == "true") {
+            else if (columnOfTID1[j] == tempnsIndexerChecker && columnOfTweetNovel2[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] - 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum, atIndex:nsIndexer)
             }
-            if (columnOfTID2[j] == "tid00\(nsIndexer+1)" || columnOfTID2[j] == "tid0\(nsIndexer+1)"  && columnOfTweetNovel2[j] == "true") {
+            if (columnOfTID2[j] == tempnsIndexerChecker && columnOfTweetNovel2[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] + 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum, atIndex:nsIndexer)
             }
-            else if (columnOfTID2[j] == "tid00\(nsIndexer+1)" || columnOfTID2[j] == "tid0\(nsIndexer+1)"  && columnOfTweetsEqual[j] == "true") {
+            else if (columnOfTID2[j] == tempnsIndexerChecker && columnOfTweetsEqual[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] + 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum, atIndex:nsIndexer)
             }
-            else if (columnOfTID2[j] == "tid00\(nsIndexer+1)" || columnOfTID2[j] == "tid0\(nsIndexer+1)"  && columnOfTweetNovel1[j] == "true") {
+            else if (columnOfTID2[j] == tempnsIndexerChecker && columnOfTweetNovel1[j] == "true") {
                 interTweetNoveltySum = tweetNoveltySum[nsIndexer] - 1
+                tweetNoveltySum.removeLast()
                 tweetNoveltySum.insert(interTweetNoveltySum,atIndex:nsIndexer)
             }
             j++
         }
+        tidIndexWriter.append(String(nsIndexer))
         nsIndexer++
         interTweetNoveltySum = 0
         j = 0
     }
+    var tweetNoveltySumString = [String]()
+    for i in 0..<tweetNoveltySum.count {
+        tweetNoveltySumString.insert("\(tidIndexWriter[i]),\(String(tweetNoveltySum[i]))", atIndex: i)
+    }
+    saveToDocument(tweetNoveltySumString, "noveltySum.csv")
 }
 
 func retrieveWordsOfTweetsA(matchIndexer: Int, j: Int){
@@ -133,7 +153,7 @@ func retrieveWordsOfTweetsB(matchIndexer: Int, j: Int){
     }
 }
 
-func generateOutput() {
+func generateCompetitionResults() {
     var j = 0
     var matchIndexer = 0
     var tempNameTID = ""
@@ -395,7 +415,7 @@ func fillWordsB(matchIndexer: Int, j: Int) {
 
 func generateTweets() {
     var tweet = [Int: String]()
-    let url = urlForScene("/Users/wenjiezhong/Dropbox/AI/CrowdTruth/CrowdFlower/Processing/f753477test.csv")
+    let url = urlForScene("/Users/wenjiezhong/Desktop/f758430.csv")
     var error: NSErrorPointer = nil
     if let csv = CSV(contentsOfURL: url, error: error) {
         // Rows
@@ -441,30 +461,10 @@ func generateTweets() {
     }
     wordsInTweetsArray1 = wordsOfTweets1!.componentsSeparatedByString("\n")
     wordsInTweetsArray2 = wordsOfTweets2!.componentsSeparatedByString("\n")
-    generateOutput()
+    generateCompetitionResults()
     combineArraysToDocument()
-    //saveMultipleDocuments()
     saveToDocument(combinedArarys, "aggregated.csv")
     //calculateNoveltySum()
-}
-
-func saveMultipleDocuments() {
-    saveToDocument(resultNames[0], "TID")
-    saveToDocument(resultNames[1], "ID")
-    saveToDocument(matchResult[0], "wins")
-    saveToDocument(matchResult[1], "draw")
-    saveToDocument(matchResult[2], "lost")
-    for i in 0...1 {
-        saveToDocument(relevancyOfTaskCheck[i], "relevant\(i)")
-        saveToDocument(irrelevancyOfTaskCheck[i], "irrelevant\(i)")
-    }
-    for i in 0..<8 {
-        saveToDocument(words[i], "words\(i)")
-    }
-    for i in 0..<29 {
-        saveToDocument(tweetWords[i], "tweetWords\(i)")
-        saveToDocument(selectedWords[i],"selectedWords\(i)")
-    }
 }
 
 var combinedArarys = [String]()
@@ -508,16 +508,19 @@ func combineArraysToDocument() {
 }
 
 var columnOfTweets = [String]()
+var forDistanceMeasure = "/Users/wenjiezhong/Desktop/fifa.txt"
+var wordsOfDistance = String(contentsOfFile: forDistanceMeasure, encoding: NSUTF8StringEncoding, error: nil)
 var i = 0
 var tweetlets = [String]()
 var nextTweetlets = [String]()
 var similarityScore = [String]()
 var indexOfTweetlets: Int = 0
-var indexOfColumns = 0
+var indexOfColumns = 1850
 var similarityScoreTemp = 0
 var similarityScoreString = ""
 
 func executeSimilarityCalculation() {
+    columnOfTweets = wordsOfDistance!.componentsSeparatedByString("\n")
     while i < columnOfTweets.count-1 {
         var tweetlets = columnOfTweets[indexOfColumns].componentsSeparatedByString(" ")
         var nextTweetlets = columnOfTweets[indexOfColumns+1].componentsSeparatedByString(" ")
@@ -547,6 +550,56 @@ func executeSimilarityCalculation() {
         let joinedSimilarities = "\n".join(similarityScore)
         joinedSimilarities.writeToFile(pathToWriteForSimilarity, atomically:true, encoding:NSUTF8StringEncoding)
     }
+}
+
+var h = 0
+var tempArrayOfAllDistances = [Int]()
+var arrayOfAllDistances = [String]()
+var indexOfColumnsReverse = 0
+func generateSmallestDistances() {
+    columnOfTweets = wordsOfDistance!.componentsSeparatedByString("\n")
+    while indexOfColumns < columnOfTweets.count {
+        while indexOfColumnsReverse != -1 {
+            var tweetlets = columnOfTweets[indexOfColumns].componentsSeparatedByString(" ")
+            var nextTweetlets = columnOfTweets[indexOfColumnsReverse].componentsSeparatedByString(" ")
+            while indexOfTweetlets < tweetlets.count && indexOfTweetlets < nextTweetlets.count {
+                similarityScoreTemp += levenshteinDistance(tweetlets[indexOfTweetlets],nextTweetlets[indexOfTweetlets])
+                indexOfTweetlets++
+            }
+            tempArrayOfAllDistances.append(similarityScoreTemp)
+            similarityScoreTemp = 0
+            indexOfColumnsReverse--
+            indexOfTweetlets = 0
+        }
+        var numMin = tempArrayOfAllDistances.reduce(Int.max, combine: { min($0, $1) })
+        tempArrayOfAllDistances.removeAll()
+        similarityScoreString = String(numMin)
+        similarityScore.append(similarityScoreString)
+        indexOfColumnsReverse = indexOfColumns
+        indexOfColumns++
+        println("\(h): \(similarityScore[h])")
+        h++
+    }
+    saveToDocument(similarityScore, "minDistanceOfAll")
+}
+
+func tempFunc() {
+    columnOfTweets = wordsOfDistance!.componentsSeparatedByString("\n")
+    var testSentence = "News:  #Vietnam requests China to probe attack that killed 3 #Vietnamese women - Tuoitrenews"
+    while indexOfColumns < columnOfTweets.count-1 {
+        var tweetlets = columnOfTweets[indexOfColumns].componentsSeparatedByString(" ")
+        var nextTweetlets = testSentence.componentsSeparatedByString(" ")
+        while indexOfTweetlets < tweetlets.count && indexOfTweetlets < nextTweetlets.count {
+            similarityScoreTemp += levenshteinDistance(tweetlets[indexOfTweetlets],nextTweetlets[indexOfTweetlets])
+            indexOfTweetlets++
+        }
+        tempArrayOfAllDistances.append(similarityScoreTemp)
+        similarityScoreTemp = 0
+        indexOfColumns++
+        indexOfTweetlets = 0
+    }
+    var numMin = tempArrayOfAllDistances.reduce(Int.max, combine: { min($0, $1) })
+    println(numMin)
 }
 
 //Relevancy score Wikipedia
@@ -609,7 +662,6 @@ func countWikiTerms() {
         joinedWiki.writeToFile(pathToWriteForWiki, atomically:true, encoding:NSUTF8StringEncoding)
     }
 }
-
 
 
 

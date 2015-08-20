@@ -8,15 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		67298A461B18897400D2ECB3 /* Levenshteins Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */; };
-		6759D2691B61D886008E7852 /* GenerateCWVectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6759D2681B61D886008E7852 /* GenerateCWVectors.swift */; };
+		674509011B6B69EF0071F854 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674509001B6B69EF0071F854 /* SwiftRegex.swift */; };
 		677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677911B61B1888E900C4DB6C /* CSVScanner.swift */; };
-		6780C9581B40C63F0082688D /* CountFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C9571B40C63F0082688D /* CountFunctions.swift */; };
+		6780C9581B40C63F0082688D /* CountMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C9571B40C63F0082688D /* CountMatches.swift */; };
 		6781CD5C1B1877A200250863 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD5B1B1877A200250863 /* main.swift */; };
 		6781CD6D1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */; };
 		678E961E1B1891EA00F14B28 /* FeaturesRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */; };
+		67C039371B856F60005CC596 /* TweetIDMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C039361B856F60005CC596 /* TweetIDMatcher.swift */; };
+		67D4A2461B6591B2005947F1 /* sumSelectedCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D4A2451B6591B2005947F1 /* sumSelectedCount.swift */; };
 		67F181261B60E21400A9EE62 /* SortByTaskID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F181251B60E21400A9EE62 /* SortByTaskID.swift */; };
 		67F4B1331B58F9020062B973 /* CalculateWithCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */; };
+		67F51C481B624C3F00763542 /* SortWithWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F51C471B624C3F00763542 /* SortWithWords.swift */; };
 		67F926761B604953007159BB /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F926751B604953007159BB /* Archive.swift */; };
+		67FC6D671B72FCF5003F9FB4 /* PairUpTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC6D661B72FCF5003F9FB4 /* PairUpTweets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,9 +35,9 @@
 
 /* Begin PBXFileReference section */
 		67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Levenshteins Distance.swift"; sourceTree = "<group>"; };
-		6759D2681B61D886008E7852 /* GenerateCWVectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateCWVectors.swift; sourceTree = "<group>"; };
+		674509001B6B69EF0071F854 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		677911B61B1888E900C4DB6C /* CSVScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVScanner.swift; sourceTree = "<group>"; };
-		6780C9571B40C63F0082688D /* CountFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountFunctions.swift; sourceTree = "<group>"; };
+		6780C9571B40C63F0082688D /* CountMatches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountMatches.swift; sourceTree = "<group>"; };
 		6781CD561B1877A200250863 /* Tweet Novelty Detection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tweet Novelty Detection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6781CD5A1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6781CD5B1B1877A200250863 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -41,9 +45,13 @@
 		6781CD6B1B1877A200250863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6781CD6C1B1877A200250863 /* Tweet_Novelty_DetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet_Novelty_DetectionTests.swift; sourceTree = "<group>"; };
 		678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesRetrieval.swift; sourceTree = "<group>"; };
+		67C039361B856F60005CC596 /* TweetIDMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetIDMatcher.swift; sourceTree = "<group>"; };
+		67D4A2451B6591B2005947F1 /* sumSelectedCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sumSelectedCount.swift; sourceTree = "<group>"; };
 		67F181251B60E21400A9EE62 /* SortByTaskID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortByTaskID.swift; sourceTree = "<group>"; };
 		67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateWithCSV.swift; sourceTree = "<group>"; };
+		67F51C471B624C3F00763542 /* SortWithWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortWithWords.swift; sourceTree = "<group>"; };
 		67F926751B604953007159BB /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
+		67FC6D661B72FCF5003F9FB4 /* PairUpTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairUpTweets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,14 +94,18 @@
 			isa = PBXGroup;
 			children = (
 				6781CD5B1B1877A200250863 /* main.swift */,
-				67F926751B604953007159BB /* Archive.swift */,
 				67F4B1321B58F9020062B973 /* CalculateWithCSV.swift */,
 				67F181251B60E21400A9EE62 /* SortByTaskID.swift */,
-				6759D2681B61D886008E7852 /* GenerateCWVectors.swift */,
+				67D4A2451B6591B2005947F1 /* sumSelectedCount.swift */,
+				67F51C471B624C3F00763542 /* SortWithWords.swift */,
 				678E961D1B1891EA00F14B28 /* FeaturesRetrieval.swift */,
-				6780C9571B40C63F0082688D /* CountFunctions.swift */,
+				67FC6D661B72FCF5003F9FB4 /* PairUpTweets.swift */,
+				6780C9571B40C63F0082688D /* CountMatches.swift */,
+				67C039361B856F60005CC596 /* TweetIDMatcher.swift */,
 				677911B61B1888E900C4DB6C /* CSVScanner.swift */,
+				674509001B6B69EF0071F854 /* SwiftRegex.swift */,
 				67298A451B18897400D2ECB3 /* Levenshteins Distance.swift */,
+				67F926751B604953007159BB /* Archive.swift */,
 				6781CD591B1877A200250863 /* Supporting Files */,
 			);
 			path = "Tweet Novelty Detection";
@@ -223,13 +235,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				67F181261B60E21400A9EE62 /* SortByTaskID.swift in Sources */,
+				67C039371B856F60005CC596 /* TweetIDMatcher.swift in Sources */,
 				67298A461B18897400D2ECB3 /* Levenshteins Distance.swift in Sources */,
-				6780C9581B40C63F0082688D /* CountFunctions.swift in Sources */,
+				67D4A2461B6591B2005947F1 /* sumSelectedCount.swift in Sources */,
+				67F51C481B624C3F00763542 /* SortWithWords.swift in Sources */,
+				6780C9581B40C63F0082688D /* CountMatches.swift in Sources */,
+				674509011B6B69EF0071F854 /* SwiftRegex.swift in Sources */,
 				678E961E1B1891EA00F14B28 /* FeaturesRetrieval.swift in Sources */,
 				67F4B1331B58F9020062B973 /* CalculateWithCSV.swift in Sources */,
 				6781CD5C1B1877A200250863 /* main.swift in Sources */,
 				677911B71B1888E900C4DB6C /* CSVScanner.swift in Sources */,
-				6759D2691B61D886008E7852 /* GenerateCWVectors.swift in Sources */,
+				67FC6D671B72FCF5003F9FB4 /* PairUpTweets.swift in Sources */,
 				67F926761B604953007159BB /* Archive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
